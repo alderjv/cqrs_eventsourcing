@@ -1,0 +1,25 @@
+@startuml
+set separator none
+title RhSystemApplication
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+Container_Boundary("RhSystemApplication.RhSystemApplication_boundary", "RhSystemApplication", $tags="") {
+  Component(RhSystemApplication.RhSystemApplication.Funcionario, "Funcionario", $techn="Module", $descr="", $tags="", $link="")
+  Component(RhSystemApplication.RhSystemApplication.RH, "RH", $techn="Module", $descr="", $tags="", $link="")
+  Component(RhSystemApplication.RhSystemApplication.Shared, "Shared", $techn="Module", $descr="", $tags="", $link="")
+}
+
+Rel(RhSystemApplication.RhSystemApplication.RH, RhSystemApplication.RhSystemApplication.Shared, "uses", $techn="", $tags="", $link="")
+Rel(RhSystemApplication.RhSystemApplication.Funcionario, RhSystemApplication.RhSystemApplication.Shared, "depends on", $techn="", $tags="", $link="")
+Rel(RhSystemApplication.RhSystemApplication.Funcionario, RhSystemApplication.RhSystemApplication.RH, "depends on", $techn="", $tags="", $link="")
+Rel(RhSystemApplication.RhSystemApplication.Shared, RhSystemApplication.RhSystemApplication.Funcionario, "depends on", $techn="", $tags="", $link="")
+Rel(RhSystemApplication.RhSystemApplication.Shared, RhSystemApplication.RhSystemApplication.RH, "uses", $techn="", $tags="", $link="")
+Rel(RhSystemApplication.RhSystemApplication.RH, RhSystemApplication.RhSystemApplication.Funcionario, "listens to", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

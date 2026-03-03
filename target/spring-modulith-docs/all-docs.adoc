@@ -1,0 +1,19 @@
+== RhSystemApplication
+plantuml::components.puml[,,format=svg]
+
+== Funcionario
+plantuml::module-funcionario.puml[,,format=svg]
+include::module-funcionario.adoc[]
+
+== Identidade
+plantuml::module-identidade.puml[,,format=svg]
+include::module-identidade.adoc[]
+
+== RH
+plantuml::module-rh.puml[,,format=svg]
+include::module-rh.adoc[]
+
+== Shared
+plantuml::module-shared.puml[,,format=svg]
+include::module-shared.adoc[]
+

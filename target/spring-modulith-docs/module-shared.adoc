@@ -1,0 +1,30 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`br.org.postalis.training.rh.shared`
+|Spring components
+|_Controllers_
+
+* `b.o.p.t.r.s.api.AdminController`
+
+_Services_
+
+* `b.o.p.t.r.s.infrastructure.EmailService`
+* `b.o.p.t.r.s.infrastructure.eventsourcing.ReplayService`
+* `b.o.p.t.r.s.infrastructure.messaging.NotificacaoService`
+
+_Repositories_
+
+* `b.o.p.t.r.s.infrastructure.eventsourcing.EventStore` (via `b.o.p.t.r.s.infrastructure.eventsourcing.PostgresEventStore`)
+* `b.o.p.t.r.s.infrastructure.eventsourcing.SnapshotRepository` (via `b.o.p.t.r.s.infrastructure.eventsourcing.PostgresSnapshotRepository`)
+
+_Others_
+
+* `b.o.p.t.r.s.api.GlobalExceptionHandler`
+* `b.o.p.t.r.s.infrastructure.CacheConfig`
+* `b.o.p.t.r.s.infrastructure.CacheInvalidator`
+* `b.o.p.t.r.s.infrastructure.eventsourcing.EventTypeRegistry`
+* `b.o.p.t.r.s.infrastructure.messaging.DomainEventPublisher`
+|Bean references
+|* `b.o.p.t.r.r.infrastructure.FuncionarioRepository` (in RH)
+|===

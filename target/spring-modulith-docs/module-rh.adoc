@@ -1,0 +1,12 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`br.org.postalis.training.rh.rh`
+|Bean references
+|* `b.o.p.t.r.s.infrastructure.messaging.DomainEventPublisher` (in Shared)
+* `b.o.p.t.r.s.infrastructure.CacheInvalidator` (in Shared)
+* `b.o.p.t.r.s.infrastructure.EmailService` (in Shared)
+* `b.o.p.t.r.s.infrastructure.messaging.NotificacaoService` (in Shared)
+* `b.o.p.t.r.s.infrastructure.eventsourcing.EventStore` (in Shared)
+* `b.o.p.t.r.s.infrastructure.eventsourcing.SnapshotRepository` (in Shared)
+|===

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.org.postalis.training.rh.RhSystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.056 s -- in br.org.postalis.training.rh.RhSystemApplicationTests

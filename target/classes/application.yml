@@ -1,0 +1,50 @@
+server:
+  port: 9000
+
+spring:
+  autoconfigure:
+    exclude: #Exclui provisoriamente o RAG
+      - org.springframework.ai.vectorstore.redis.autoconfigure.RedisVectorStoreAutoConfiguration
+  application:
+    name: rh-system
+
+  # PostgreSQL - Schema principal
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rh_training?currentSchema=rh
+    username: dev
+    password: dev123
+    driver-class-name: org.postgresql.Driver
+
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: validate # Flyway gerencia o schema
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: rh
+
+  # Flyway
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/rh
+    schemas: rh
+    baseline-on-migrate: true
+
+  # Redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=5m
+
+# Logging
+logging:
+  level:
+    br.org.postalis: DEBUG
+    org.springframework.modulith: INFO

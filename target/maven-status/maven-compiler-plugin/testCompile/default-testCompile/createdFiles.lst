@@ -1,0 +1,4 @@
+br\org\postalis\training\rh\ModulithTests.class
+br\org\postalis\training\rh\shared\domain\ValueObjectsTest.class
+br\org\postalis\training\rh\RhSystemApplicationTests.class
+br\org\postalis\training\rh\funcionario\infrastructure\FuncionarioRepositoryTest.class

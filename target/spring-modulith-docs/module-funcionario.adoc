@@ -1,0 +1,7 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`br.org.postalis.training.rh.funcionario`
+|Bean references
+|* `b.o.p.t.r.s.infrastructure.EmailService` (in Shared)
+|===
