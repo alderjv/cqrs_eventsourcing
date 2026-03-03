@@ -2,6 +2,7 @@
 package br.org.postalis.training.rh.funcionario.domain;
 
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratado;
+import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratadoV1;
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioDemitido;
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioDesligado;
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioEvent;
@@ -113,6 +114,7 @@ public class Funcionario extends AggregateRoot {
                 LocalDate.now(),         // dataAdmissao
                 salario,                 // salario
                 cargo,                   // cargo
+
                 null                     // metadata (opcional)
         ));
 
