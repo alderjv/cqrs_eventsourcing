@@ -2,6 +2,7 @@
 package br.org.postalis.training.rh.funcionario.domain;
 
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratado;
+import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratadoV1;
 import br.org.postalis.training.rh.shared.domain.AggregateRoot;
 import br.org.postalis.training.rh.shared.domain.Cpf;
 import br.org.postalis.training.rh.shared.domain.DomainEvent;
@@ -75,6 +76,42 @@ class FuncionarioTest {
         // Given: um evento salvo
         UUID funcionarioId = UUIDv7.generate();
         var evento = new FuncionarioContratado(
+                UUIDv7.generate(),
+                Instant.now(),
+                funcionarioId,
+                "000002",
+                "Maria Santos",
+                "52998224725",
+                "maria@empresa.com",
+                LocalDate.now(),
+                new BigDecimal("6000"),
+                "Analista",
+                "pos-graduação",
+                null
+        );
+
+        // When: reconstruímos o aggregate
+        // NOTA: Supplier passa o aggregateId do evento para o construtor
+        Funcionario func = AggregateRoot.fromEvents(
+                List.of(evento),
+                () -> new Funcionario(UUID.fromString(evento.aggregateId()))
+        );
+
+        // Then
+        assertEquals(funcionarioId, func.getId());
+        assertEquals("Maria Santos", func.getNome());
+        assertEquals("Analista", func.getCargo());
+        assertTrue(func.isAtivo());
+
+        // uncommittedEvents está vazia (eventos vieram do banco)
+        assertEquals(0, func.getUncommittedEvents().size());
+    }
+
+    @Test
+    void deveReconstruirDeEventosV1() {
+        // Given: um evento salvo
+        UUID funcionarioId = UUIDv7.generate();
+        var evento = new FuncionarioContratadoV1(
                 UUIDv7.generate(),
                 Instant.now(),
                 funcionarioId,

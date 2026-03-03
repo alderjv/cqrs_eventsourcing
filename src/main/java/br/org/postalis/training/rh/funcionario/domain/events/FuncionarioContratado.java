@@ -53,6 +53,7 @@ public record FuncionarioContratado(
         Objects.requireNonNull(dataAdmissao, "dataAdmissao é obrigatória");
         Objects.requireNonNull(salario, "salario é obrigatório");
         Objects.requireNonNull(cargo, "cargo é obrigatório");
+        Objects.requireNonNull(escolaridade, " é escolaridade");
 
         if (salario.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("salario deve ser positivo");

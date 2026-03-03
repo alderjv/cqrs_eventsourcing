@@ -49,6 +49,7 @@ public class Funcionario extends AggregateRoot {
     private String cargo;
     private BigDecimal salario;
     private LocalDate dataAdmissao;
+    private String escolaridade;
     private boolean ativo;
     private LocalDate dataDesligamento;
 
@@ -114,7 +115,7 @@ public class Funcionario extends AggregateRoot {
                 LocalDate.now(),         // dataAdmissao
                 salario,                 // salario
                 cargo,                   // cargo
-
+                "campo escolaridade não informado",  //TODO não está claro se aqui vai usar FuncionarioContratado ou FuncionarioContratadoV1
                 null                     // metadata (opcional)
         ));
 
@@ -131,6 +132,7 @@ public class Funcionario extends AggregateRoot {
         if (event instanceof FuncionarioEvent fe) {
             switch (fe) {
                 case FuncionarioContratado e -> on(e);
+                case FuncionarioContratadoV1 e -> on(e);
                 case FuncionarioDemitido e -> on(e);
                 case SalarioAjustado e -> on(e);
                 case FuncionarioPromovido e -> on(e);
@@ -138,6 +140,17 @@ public class Funcionario extends AggregateRoot {
                 default -> throw new IllegalArgumentException("Evento desconhecido: " + event.eventType());
             }
         }
+    }
+
+    private void on(FuncionarioContratadoV1 e) {
+        this.cpf = Cpf.of(e.cpf());
+        this.nome = e.nome();
+        this.email = Email.of(e.email());
+        this.matricula = Matricula.of(e.matricula());
+        this.cargo = e.cargo();
+        this.salario = e.salario();
+        this.dataAdmissao = e.dataAdmissao();
+        this.ativo = true;
     }
 
     @Async
@@ -152,6 +165,7 @@ public class Funcionario extends AggregateRoot {
         this.cargo = e.cargo();
         this.salario = e.salario();
         this.dataAdmissao = e.dataAdmissao();
+        this.escolaridade = e.escolaridade();
         this.ativo = true;
 
     }

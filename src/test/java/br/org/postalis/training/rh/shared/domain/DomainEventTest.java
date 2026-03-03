@@ -2,14 +2,17 @@
 package br.org.postalis.training.rh.shared.domain;
 
 import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratado;
-import org.junit.jupiter.api.Test;
-
+import br.org.postalis.training.rh.funcionario.domain.events.FuncionarioContratadoV1;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DomainEventTest {
 
@@ -19,7 +22,7 @@ class DomainEventTest {
         var funcionarioId = UUID.randomUUID();
         var now = Instant.now();
 
-        var evento = new FuncionarioContratado(
+        var evento = new FuncionarioContratadoV1(
                 eventId,
                 now,
                 funcionarioId,
@@ -37,13 +40,53 @@ class DomainEventTest {
         assertEquals(now, evento.occurredOn());
         assertEquals(funcionarioId.toString(), evento.aggregateId());
         assertEquals("FuncionarioContratado", evento.eventType());
-        assertEquals(1, evento.version());
+        assertEquals(2, evento.version());
         assertEquals("rh", evento.schema());
         assertNull(evento.metadata());
+
+        var eventoV1 = new FuncionarioContratadoV1(
+                eventId,
+                now,
+                funcionarioId,
+                "000001",
+                "João Silva",
+                "52998224725",
+                "joao@empresa.com",
+                LocalDate.of(2024, 1, 15),
+                new BigDecimal("5000.00"),
+                "Analista",
+                null  // metadata opcional
+        );
+
+        assertEquals(eventId, eventoV1.eventId());
+        assertEquals(now, eventoV1.occurredOn());
+        assertEquals(funcionarioId.toString(), eventoV1.aggregateId());
+        assertEquals("FuncionarioContratado", eventoV1.eventType());
+        assertEquals(1, eventoV1.version());
+        assertEquals("rh", eventoV1.schema());
+        assertNull(eventoV1.metadata());
+
+
     }
 
     @Test
     void deveRejeitarEventoComSalarioInvalido() {
+        assertThrows(IllegalArgumentException.class, () ->
+                new FuncionarioContratadoV1(
+                        UUID.randomUUID(),
+                        Instant.now(),
+                        UUID.randomUUID(),
+                        "000001",
+                        "João Silva",
+                        "52998224725",
+                        "joao@empresa.com",
+                        LocalDate.of(2024, 1, 15),
+                        BigDecimal.ZERO,  // salário inválido
+                        "Analista",
+                        null
+                )
+        );
+
         assertThrows(IllegalArgumentException.class, () ->
                 new FuncionarioContratado(
                         UUID.randomUUID(),
@@ -56,6 +99,7 @@ class DomainEventTest {
                         LocalDate.of(2024, 1, 15),
                         BigDecimal.ZERO,  // salário inválido
                         "Analista",
+                        "pos-gradiação",
                         null
                 )
         );
