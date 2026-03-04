@@ -38,7 +38,8 @@ class FuncionarioRepositoryTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(2),
                 "Desenvolvedor",
-                new BigDecimal("5000.00")
+                new BigDecimal("5000.00"),
+                "Pos-graduação"
         );
 
         // When
@@ -72,7 +73,8 @@ class FuncionarioRepositoryTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(2),
                 "Desenvolvedor",
-                new BigDecimal("5000.00")
+                new BigDecimal("5000.00"),
+                "Pos-graduação"
         );
         repository.save(func);
 

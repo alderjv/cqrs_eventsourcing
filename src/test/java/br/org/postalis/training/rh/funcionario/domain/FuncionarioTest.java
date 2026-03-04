@@ -34,7 +34,8 @@ class FuncionarioTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(1),
                 "Desenvolvedor",
-                new BigDecimal("5000.00")
+                new BigDecimal("5000.00"),
+                "Pos-graduação"
         );
 
         // Then
@@ -56,7 +57,8 @@ class FuncionarioTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(1),
                 "Dev",
-                new BigDecimal("5000")
+                new BigDecimal("5000"),
+                "Pos-graduação"
         );
 
         // Then
@@ -151,7 +153,8 @@ class FuncionarioTest {
                         Email.of("joao@empresa.com"),
                         Matricula.gerar(1),
                         "Dev",
-                        new BigDecimal("5000")
+                        new BigDecimal("5000"),
+                        "Pos-graduação"
                 )
         );
     }
@@ -165,7 +168,8 @@ class FuncionarioTest {
                         Email.of("joao@empresa.com"),
                         Matricula.gerar(1),
                         "Dev",
-                        new BigDecimal("-100")  // salário negativo
+                        new BigDecimal("-100"),  // salário negativo
+                        "Pos-graduação"
                 )
         );
     }
@@ -179,7 +183,8 @@ class FuncionarioTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(1),
                 "Dev",
-                new BigDecimal("5000")
+                new BigDecimal("5000"),
+                "Pos-graduação"
         );
 
         // 2. SIMULAR PERSISTÊNCIA - Pega os eventos

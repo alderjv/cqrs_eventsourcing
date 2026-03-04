@@ -38,7 +38,8 @@ class FuncionarioReplayTest {
                 Email.of("ana@empresa.com"),
                 Matricula.gerar(100),
                 "Analista Junior",
-                new BigDecimal("4000.00")
+                new BigDecimal("4000.00"),
+                "Pos-graduação"
         );
 
         original.promover("Analista Pleno", new BigDecimal("6000.00"));
@@ -71,7 +72,8 @@ class FuncionarioReplayTest {
                 Email.of("pedro@empresa.com"),
                 Matricula.gerar(101),
                 "Desenvolvedor",
-                new BigDecimal("5000.00")
+                new BigDecimal("5000.00"),
+                "Pos-graduação"
         );
 
         original.desligar("Término de contrato temporário");
@@ -100,7 +102,8 @@ class FuncionarioReplayTest {
                 Email.of("maria@empresa.com"),
                 Matricula.gerar(102),
                 "Estagiária",
-                new BigDecimal("1500.00")
+                new BigDecimal("1500.00"),
+                "Pos-graduação"
         );
 
         func.promover("Analista Junior", new BigDecimal("3000.00"));

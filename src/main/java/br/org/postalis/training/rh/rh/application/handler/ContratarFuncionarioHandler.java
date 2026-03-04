@@ -2,8 +2,8 @@
 package br.org.postalis.training.rh.rh.application.handler;
 
 import br.org.postalis.training.rh.funcionario.domain.Funcionario;
-import br.org.postalis.training.rh.rh.infrastructure.FuncionarioRepository;
 import br.org.postalis.training.rh.rh.application.command.ContratarFuncionarioCommand;
+import br.org.postalis.training.rh.rh.infrastructure.FuncionarioRepository;
 import br.org.postalis.training.rh.shared.application.CommandHandler;
 import br.org.postalis.training.rh.shared.domain.BusinessRuleException;
 import br.org.postalis.training.rh.shared.domain.Cpf;
@@ -43,7 +43,8 @@ public class ContratarFuncionarioHandler
                 Email.of(command.email()),
                 matricula,
                 command.cargo(),
-                command.salario()
+                command.salario(),
+                "Pos-graduação"
         );
 
         var events = List.copyOf(funcionario.getUncommittedEvents());

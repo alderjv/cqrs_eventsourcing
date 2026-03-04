@@ -82,7 +82,8 @@ public class Funcionario extends AggregateRoot {
             Email email,
             Matricula matricula,
             String cargo,
-            BigDecimal salario) {
+            BigDecimal salario,
+            String escaolaridade) {
 
         // INVARIANTE: Dados básicos obrigatórios
         Objects.requireNonNull(cpf, "CPF é obrigatório");
@@ -115,7 +116,7 @@ public class Funcionario extends AggregateRoot {
                 LocalDate.now(),         // dataAdmissao
                 salario,                 // salario
                 cargo,                   // cargo
-                "campo escolaridade não informado",  //TODO não está claro se aqui vai usar FuncionarioContratado ou FuncionarioContratadoV1
+                escaolaridade,  //TODO não está claro se aqui vai usar FuncionarioContratado ou FuncionarioContratadoV1
                 null                     // metadata (opcional)
         ));
 

@@ -21,7 +21,8 @@ class FuncionarioInvariantesTest {
                 Email.of("joao@empresa.com"),
                 Matricula.gerar(1),
                 "Desenvolvedor",
-                new BigDecimal("5000.00")
+                new BigDecimal("5000.00"),
+                "Pos-graduação"
         );
     }
 
@@ -36,7 +37,8 @@ class FuncionarioInvariantesTest {
                         Email.of("email@test.com"),
                         Matricula.gerar(1),
                         "Cargo",
-                        new BigDecimal("1000")
+                        new BigDecimal("1000"),
+                        "Pos-graduação"
                 )
         );
     }
@@ -50,7 +52,8 @@ class FuncionarioInvariantesTest {
                         Email.of("email@test.com"),
                         Matricula.gerar(1),
                         "Cargo",
-                        BigDecimal.ZERO  // Salário zero
+                        BigDecimal.ZERO,  // Salário zero
+                        "Pos-graduação"
                 )
         );
     }
@@ -64,7 +67,8 @@ class FuncionarioInvariantesTest {
                         Email.of("email@test.com"),
                         Matricula.gerar(1),
                         "Cargo",
-                        new BigDecimal("-100")  // Salário negativo
+                        new BigDecimal("-100"),  // Salário negativo
+                        "Pos-graduação"
                 )
         );
     }
